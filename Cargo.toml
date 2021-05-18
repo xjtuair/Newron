@@ -1,0 +1,31 @@
+
+[package]
+name = "newron"
+version = "0.5.0"
+authors = ["Hugues Gaillard <hugues.gaillard@me.com>", "Brieuc L'Hélias <brieuc.lhelias@gmail.com>"]
+edition = "2018"
+keywords = [ "neural", "network", "deep", "learning" ]
+description = """
+A Rust library to train and infer deep learning models.
+"""
+readme = "README.md"
+homepage = "https://github.com/hugues31/newron"
+repository = "https://github.com/hugues31/newron"
+documentation = "https://docs.rs/newron/"
+license = "MIT"
+
+[[example]]
+name = "linear_regression"
+path = "examples/linear_regression.rs"
+
+[[example]]
+name = "perceptron"
+path = "examples/perceptron.rs"
+
+[[example]]
+name = "mnist"
+path = "examples/mnist.rs"
+
+[[example]]
+name = "wine_quality"
+path = "examples/wine_quality.rs"
