@@ -2,4 +2,8 @@
 cd ./datasets
 
 # Download Wine Quality (white) dataset
-wine_url="http://archive.ics.uci.edu/ml/machine-learn
+wine_url="http://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv";
+curl -X GET $wine_url > ./winequality-white.csv;
+
+# Download MNIST Fashion dataset
+training_images="htt
