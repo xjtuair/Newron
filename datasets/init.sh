@@ -14,3 +14,8 @@ mkdir fashion_mnist;
 
 curl -X GET $training_images > ./fashion_mnist/train-images-idx3-ubyte.gz;
 gzip -d fashion_mnist/train-images-idx3-ubyte.gz;
+
+curl -X GET $training_labels > ./fashion_mnist/train-labels-idx1-ubyte.gz;
+gzip -d fashion_mnist/train-labels-idx1-ubyte.gz;
+
+curl -X GET $
