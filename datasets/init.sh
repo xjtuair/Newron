@@ -21,4 +21,5 @@ gzip -d fashion_mnist/train-labels-idx1-ubyte.gz;
 curl -X GET $test_images > ./fashion_mnist/t10k-images-idx3-ubyte.gz;
 gzip -d fashion_mnist/t10k-images-idx3-ubyte.gz;
 
-curl -X GET $test_labels > ./fashion_mnist/t10k-label
+curl -X GET $test_labels > ./fashion_mnist/t10k-labels-idx1-ubyte.gz;
+gzip -d fashion_mnist/t10k-labels-idx1-ubyte.gz;
