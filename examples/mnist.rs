@@ -43,3 +43,4 @@ fn main() {
     model.summary();
 
     model.fit(&dataset, 10, true);
+}
