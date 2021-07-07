@@ -11,4 +11,11 @@ fn main() {
         //   X_0, X_1, X_2, Y
         vec![1.0, 0.0, 1.0, 1.0],
         vec![0.0, 1.0, 1.0, 1.0],
-        vec![0.0, 0.0,
+        vec![0.0, 0.0, 1.0, 0.0],
+        vec![1.0, 1.0, 1.0, 0.0],
+    ])
+    .unwrap();
+
+    let mut model = Sequential::new();
+    
+    model.set_see
