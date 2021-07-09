@@ -25,4 +25,12 @@ fn main() {
 
     model.add(Dense{input_units:4, output_units:1});
 
-    model.compile(
+    model.compile(MSE{},
+        SGD::new(0.02),
+        vec![Metric::Accuracy]);
+
+    model.summary();
+
+    model.fit(&dataset, 500, true);
+
+    let features_to_pre
