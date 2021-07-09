@@ -18,4 +18,11 @@ fn main() {
 
     let mut model = Sequential::new();
     
-    model.set_see
+    model.set_seed(42);
+
+    model.add(Dense{input_units:3, output_units:4});
+    model.add(TanH);
+
+    model.add(Dense{input_units:4, output_units:1});
+
+    model.compile(
