@@ -33,4 +33,9 @@ fn main() {
 
     model.fit(&dataset, 500, true);
 
-    let features_to_pre
+    let features_to_predict = vec![1.0, 0.0, 1.0];
+    let prediction = model.predict(&features_to_predict);
+
+    println!(
+        "Prediction for {:?} : {}",
+        &features_to_pr
