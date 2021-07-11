@@ -12,3 +12,10 @@ fn main() {
     dataset.split_train_test(0.8, true);
 
     println!("{:?}", dataset);
+
+    let mut model = Sequential::new();
+
+    model.set_seed(42);
+
+    model.add(Dense {
+        input_units: dataset.get_number_feature
