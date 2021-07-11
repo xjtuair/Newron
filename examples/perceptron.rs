@@ -38,4 +38,6 @@ fn main() {
 
     println!(
         "Prediction for {:?} : {}",
-        &features_to_pr
+        &features_to_predict, &prediction
+    );
+}
