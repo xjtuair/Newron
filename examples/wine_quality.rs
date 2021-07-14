@@ -18,4 +18,12 @@ fn main() {
     model.set_seed(42);
 
     model.add(Dense {
-        input_units: dataset.get_number_feature
+        input_units: dataset.get_number_features(),
+        output_units: 100
+    });
+    
+    model.add(ReLU);
+
+    model.add(Dense {
+        input_units: 100,
+        output_units: dataset.get_number
