@@ -26,4 +26,12 @@ fn main() {
 
     model.add(Dense {
         input_units: 100,
-        output_units: dataset.get_number
+        output_units: dataset.get_number_targets()
+    });
+
+    model.compile(MSE{},
+        SGD::new(0.0002),
+        vec![Metric::Accuracy]);
+
+    model.fit(&dataset, 200, true);
+}
