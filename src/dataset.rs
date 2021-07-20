@@ -10,4 +10,9 @@ use crate::{random::Rand, utils};
 
 #[derive(PartialEq, Debug)]
 pub enum ColumnType {
-    Feature, // column is a featur
+    Feature, // column is a feature used to train models
+    Target,  // column is a target to predict
+    Skip     // column not used by the model
+}
+
+#[derive(PartialEq, Clone, Copy, Debug
