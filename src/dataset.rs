@@ -23,4 +23,12 @@ pub enum RowType {
 }
 
 #[derive(Debug)]
-pub struct Col
+pub struct ColumnMetadata {
+    name: String,
+    column_type: ColumnType
+}
+
+#[derive(Debug)]
+pub struct Row {
+    data: Vec<f64>,
+    row_type: Row
