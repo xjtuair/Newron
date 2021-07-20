@@ -15,4 +15,12 @@ pub enum ColumnType {
     Skip     // column not used by the model
 }
 
-#[derive(PartialEq, Clone, Copy, Debug
+#[derive(PartialEq, Clone, Copy, Debug)]
+pub enum RowType {
+    Train,  // row is used for training
+    Test,   // row is preserved for test
+    Skip    // row is ignored
+}
+
+#[derive(Debug)]
+pub struct Col
