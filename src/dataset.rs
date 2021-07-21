@@ -31,4 +31,15 @@ pub struct ColumnMetadata {
 #[derive(Debug)]
 pub struct Row {
     data: Vec<f64>,
-    row_type: Row
+    row_type: RowType
+}
+
+#[derive(Debug)]
+pub enum DatasetError {
+    FileNotFound,
+    BadFormat(String),
+}
+
+/// Use `Dataset` to load your dataset and train
+/// a model on it.
+pub struc
