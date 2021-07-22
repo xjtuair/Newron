@@ -49,4 +49,6 @@ pub struct Dataset {
 }
 
 impl Dataset {
-    /// Load a datas
+    /// Load a dataset from a Vector of Vector of floats.
+    /// By default, the last colunm is use as a target and the others as
+    /// training features. Us
