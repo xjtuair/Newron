@@ -42,4 +42,11 @@ pub enum DatasetError {
 
 /// Use `Dataset` to load your dataset and train
 /// a model on it.
-pub struc
+pub struct Dataset {
+    // Contains all data for dataset
+    data: Vec<Row>,
+    columns_metadata: Vec<ColumnMetadata>
+}
+
+impl Dataset {
+    /// Load a datas
