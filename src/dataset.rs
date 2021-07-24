@@ -51,4 +51,6 @@ pub struct Dataset {
 impl Dataset {
     /// Load a dataset from a Vector of Vector of floats.
     /// By default, the last colunm is use as a target and the others as
-    /// training features. Us
+    /// training features. Use `set_train_cols` and `set_target_cols` to
+    /// change this behaviour.
+    /// Header is automatically generated : 'X_0', 'X_1', ..., 'Y'. Use
