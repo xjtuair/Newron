@@ -58,4 +58,7 @@ impl Dataset {
     pub fn from_raw_data(data: Vec<Vec<f64>>) -> Result<Dataset, DatasetError> {
         let cols = data[0].len();
 
- 
+        let mut columns_metadata = Vec::new();
+
+        // test that all rows in 'data' have equal lengths
+        if data.iter().a
