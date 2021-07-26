@@ -54,3 +54,8 @@ impl Dataset {
     /// training features. Use `set_train_cols` and `set_target_cols` to
     /// change this behaviour.
     /// Header is automatically generated : 'X_0', 'X_1', ..., 'Y'. Use
+    /// `set_header` to change it.
+    pub fn from_raw_data(data: Vec<Vec<f64>>) -> Result<Dataset, DatasetError> {
+        let cols = data[0].len();
+
+ 
