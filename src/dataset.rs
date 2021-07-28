@@ -61,4 +61,6 @@ impl Dataset {
         let mut columns_metadata = Vec::new();
 
         // test that all rows in 'data' have equal lengths
-        if data.iter().a
+        if data.iter().any(|ref v| v.len() != data[0].len()) {
+            return Err(DatasetError::BadFormat(format!("All rows must have equal lengths.")));
+      
