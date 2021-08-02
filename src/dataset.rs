@@ -63,4 +63,8 @@ impl Dataset {
         // test that all rows in 'data' have equal lengths
         if data.iter().any(|ref v| v.len() != data[0].len()) {
             return Err(DatasetError::BadFormat(format!("All rows must have equal lengths.")));
-      
+        }
+
+        // iterate through training features
+        for i in 0..cols - 1 {
+            columns_metadata.push(ColumnMetadata {name: format!("X_{
