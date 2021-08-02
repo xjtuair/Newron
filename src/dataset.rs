@@ -67,4 +67,7 @@ impl Dataset {
 
         // iterate through training features
         for i in 0..cols - 1 {
-            columns_metadata.push(ColumnMetadata {name: format!("X_{
+            columns_metadata.push(ColumnMetadata {name: format!("X_{}", i), column_type: ColumnType::Feature})
+        }
+
+        columns_metadata.push(ColumnMetadata {name: format!("Y"), column_type: ColumnType:
