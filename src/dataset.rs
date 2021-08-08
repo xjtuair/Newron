@@ -70,4 +70,11 @@ impl Dataset {
             columns_metadata.push(ColumnMetadata {name: format!("X_{}", i), column_type: ColumnType::Feature})
         }
 
-        columns_metadata.push(ColumnMetadata {name: format!("Y"), column_type: ColumnType:
+        columns_metadata.push(ColumnMetadata {name: format!("Y"), column_type: ColumnType::Target});
+
+        let mut rows = Vec::new();
+        for el in data {
+            rows.push(Row{data: el, row_type: RowType::Train});
+        }
+
+  
