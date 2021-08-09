@@ -88,4 +88,7 @@ impl Dataset {
     pub fn from_csv(path: &Path, header: bool) -> Result<Dataset, DatasetError> {
         let delimiter = ";";
 
-    
+        let input_file = File::open(path).unwrap();
+        let buffered = BufReader::new(input_file);
+
+        let mut data: Vec<Vec<f64>> = Vec::ne
