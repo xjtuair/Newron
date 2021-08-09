@@ -83,4 +83,9 @@ impl Dataset {
         })
     }
 
-    /// Load a CSV from the `path` specified. If `header` is true, the
+    /// Load a CSV from the `path` specified. If `header` is true, the first
+    /// line defines the header.
+    pub fn from_csv(path: &Path, header: bool) -> Result<Dataset, DatasetError> {
+        let delimiter = ";";
+
+    
