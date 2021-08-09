@@ -77,4 +77,10 @@ impl Dataset {
             rows.push(Row{data: el, row_type: RowType::Train});
         }
 
-  
+        Ok(Dataset {
+            data: rows,
+            columns_metadata,
+        })
+    }
+
+    /// Load a CSV from the `path` specified. If `header` is true, the
