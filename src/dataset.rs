@@ -91,4 +91,9 @@ impl Dataset {
         let input_file = File::open(path).unwrap();
         let buffered = BufReader::new(input_file);
 
-        let mut data: Vec<Vec<f64>> = Vec::ne
+        let mut data: Vec<Vec<f64>> = Vec::new();
+
+        for (i, line) in buffered.lines().enumerate() {
+            let l = line.unwrap();
+            let l = l.split(&delimiter);
+            let row_v
