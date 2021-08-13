@@ -102,4 +102,6 @@ impl Dataset {
                 continue; // TODO: implement header
             }
 
- 
+            let row_vec_f64: Vec<f64> = row_vec_str.iter().map(|x| f64::from_str(x).unwrap()).collect();
+            data.push(row_vec_f64);
+  
