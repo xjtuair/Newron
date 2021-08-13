@@ -96,4 +96,10 @@ impl Dataset {
         for (i, line) in buffered.lines().enumerate() {
             let l = line.unwrap();
             let l = l.split(&delimiter);
-            let row_v
+            let row_vec_str: Vec<&str> = l.collect();
+
+            if i == 0 {
+                continue; // TODO: implement header
+            }
+
+ 
