@@ -104,4 +104,10 @@ impl Dataset {
 
             let row_vec_f64: Vec<f64> = row_vec_str.iter().map(|x| f64::from_str(x).unwrap()).collect();
             data.push(row_vec_f64);
-  
+        }
+
+        let dataset = Dataset::from_raw_data(data).unwrap();
+        Ok(dataset)
+    }
+
+    fn load_ubyte(path: &Path, dataset: String) -> Result<D
