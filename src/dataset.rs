@@ -110,4 +110,6 @@ impl Dataset {
         Ok(dataset)
     }
 
-    fn load_ubyte(path: &Path, dataset: String) -> Result<D
+    fn load_ubyte(path: &Path, dataset: String) -> Result<Dataset, DatasetError> {
+        let mut labels_file = File::open(path.join(format!("{}-labels-idx1-ubyte", dataset))).unwrap();
+ 
