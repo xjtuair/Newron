@@ -115,4 +115,6 @@ impl Dataset {
         let mut images_file = File::open(path.join(format!("{}-images-idx3-ubyte", dataset))).unwrap();
 
         let mut buf = [0u8;4];
-        images_file.read(&m
+        images_file.read(&mut buf).unwrap();
+        let magic_number = utils::swap_endian(utils::as_u32_le(&buf));
+        assert_eq!(magic_number, 2051, "Incorrect magic nu
