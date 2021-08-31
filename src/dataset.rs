@@ -112,4 +112,7 @@ impl Dataset {
 
     fn load_ubyte(path: &Path, dataset: String) -> Result<Dataset, DatasetError> {
         let mut labels_file = File::open(path.join(format!("{}-labels-idx1-ubyte", dataset))).unwrap();
- 
+        let mut images_file = File::open(path.join(format!("{}-images-idx3-ubyte", dataset))).unwrap();
+
+        let mut buf = [0u8;4];
+        images_file.read(&m
