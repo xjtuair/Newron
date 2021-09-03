@@ -124,4 +124,8 @@ impl Dataset {
         let magic_number = utils::swap_endian(utils::as_u32_le(&buf));
         assert_eq!(magic_number, 2049, "Incorrect magic number for a label file.");
         
-        images_file.read(&mu
+        images_file.read(&mut buf).unwrap();
+        let number_images = utils::swap_endian(utils::as_u32_le(&buf));
+        
+        labels_file.read(&mut buf).unwrap();
+        let number_labels = u
