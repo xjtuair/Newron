@@ -128,4 +128,6 @@ impl Dataset {
         let number_images = utils::swap_endian(utils::as_u32_le(&buf));
         
         labels_file.read(&mut buf).unwrap();
-        let number_labels = u
+        let number_labels = utils::swap_endian(utils::as_u32_le(&buf));
+
+        assert_eq!(number_images, number_labels, "Number of images and label must be identica
