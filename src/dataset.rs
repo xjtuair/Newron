@@ -135,4 +135,7 @@ impl Dataset {
         images_file.read(&mut buf).unwrap();
         let rows = utils::swap_endian(utils::as_u32_le(&buf)); // =28
 
-        images_file
+        images_file.read(&mut buf).unwrap();
+        let cols = utils::swap_endian(utils::as_u32_le(&buf)); // =28
+    
+        let vector_size = (r
