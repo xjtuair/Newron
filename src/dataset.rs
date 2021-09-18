@@ -150,4 +150,7 @@ impl Dataset {
             pixels = pixels.into_iter().map(|x| x / 255.0).collect();
             // read label
             let mut label = vec![0u8;1];
-            labels_fil
+            labels_file.read(&mut label).unwrap();
+            
+            // add row to dataset (pixels + label)
+            pixels.append(&mut utils::to_vec_f64(&label
