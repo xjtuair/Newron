@@ -138,4 +138,10 @@ impl Dataset {
         images_file.read(&mut buf).unwrap();
         let cols = utils::swap_endian(utils::as_u32_le(&buf)); // =28
     
-        let vector_size = (r
+        let vector_size = (rows * cols) as usize;
+
+        let mut data: Vec<Vec<f64>> = Vec::new();
+
+        for _ in 0..number_images {
+            // read image pixel
+            l
