@@ -144,4 +144,6 @@ impl Dataset {
 
         for _ in 0..number_images {
             // read image pixel
-            l
+            let mut buf = vec![0u8;vector_size];
+            images_file.read(&mut buf).unwrap();
+            let mut pixels = utils::to_vec_f6
