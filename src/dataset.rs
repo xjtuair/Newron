@@ -153,4 +153,10 @@ impl Dataset {
             labels_file.read(&mut label).unwrap();
             
             // add row to dataset (pixels + label)
-            pixels.append(&mut utils::to_vec_f64(&label
+            pixels.append(&mut utils::to_vec_f64(&label));
+            data.push(pixels);
+        }
+        
+        let mut dataset = Dataset::from_raw_data(data).unwrap();
+
+        // At this poi
