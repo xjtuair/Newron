@@ -168,4 +168,6 @@ impl Dataset {
 
     pub fn from_ubyte(path: &Path) -> Result<Dataset, DatasetError> {
         let train_dataset = Dataset::load_ubyte(path, "train".to_string()).unwrap();
- 
+        let mut test_dataset = Dataset::load_ubyte(path, "t10k".to_string()).unwrap();
+        // set all rows to "test" type for the test_dataset
+        test_dataset.
