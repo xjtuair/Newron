@@ -166,4 +166,6 @@ impl Dataset {
         Ok(dataset)
     }
 
-    pub fn from
+    pub fn from_ubyte(path: &Path) -> Result<Dataset, DatasetError> {
+        let train_dataset = Dataset::load_ubyte(path, "train".to_string()).unwrap();
+ 
