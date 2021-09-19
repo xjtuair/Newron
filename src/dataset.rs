@@ -159,4 +159,11 @@ impl Dataset {
         
         let mut dataset = Dataset::from_raw_data(data).unwrap();
 
-        // At this poi
+        // At this point, the last col is the label
+        // We must one-hot-encode it
+        dataset.one_hot_encode(vector_size);
+
+        Ok(dataset)
+    }
+
+    pub fn from
