@@ -170,4 +170,7 @@ impl Dataset {
         let train_dataset = Dataset::load_ubyte(path, "train".to_string()).unwrap();
         let mut test_dataset = Dataset::load_ubyte(path, "t10k".to_string()).unwrap();
         // set all rows to "test" type for the test_dataset
-        test_dataset.
+        test_dataset.set_all_rows_type(RowType::Test);
+        // Add train dataset inside test dataset
+        test_dataset.concatenate(train_dataset);
+        Ok(
