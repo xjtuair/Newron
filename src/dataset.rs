@@ -173,4 +173,8 @@ impl Dataset {
         test_dataset.set_all_rows_type(RowType::Test);
         // Add train dataset inside test dataset
         test_dataset.concatenate(train_dataset);
-        Ok(
+        Ok(test_dataset)
+    }
+
+    /// Set the row type to `row_type` at the `index` specified.
+    pub fn set_row_type(&mut self, row_type: RowType, 
