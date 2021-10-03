@@ -188,4 +188,7 @@ impl Dataset {
         }
     }
 
-    /// C
+    /// Concatenate the `other` dataset inside `self`.
+    pub fn concatenate(&mut self, other: Dataset) {
+        // TODO: check that the columns are the same
+     
