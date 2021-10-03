@@ -177,4 +177,9 @@ impl Dataset {
     }
 
     /// Set the row type to `row_type` at the `index` specified.
-    pub fn set_row_type(&mut self, row_type: RowType, 
+    pub fn set_row_type(&mut self, row_type: RowType, index: usize) {
+        self.data[index].row_type = row_type;
+    }
+
+    /// Set the row type to `row_type` for all the rows.
+    pub fn s
