@@ -182,4 +182,10 @@ impl Dataset {
     }
 
     /// Set the row type to `row_type` for all the rows.
-    pub fn s
+    pub fn set_all_rows_type(&mut self, row_type: RowType) {
+        for row in self.data.iter_mut() {
+            row.row_type = row_type;
+        }
+    }
+
+    /// C
