@@ -191,4 +191,8 @@ impl Dataset {
     /// Concatenate the `other` dataset inside `self`.
     pub fn concatenate(&mut self, other: Dataset) {
         // TODO: check that the columns are the same
-     
+        self.data.extend(other.data);
+    }
+
+    /// Use one hot encoding for the column at `index`
+    /// Note : the column at `index` is removed
