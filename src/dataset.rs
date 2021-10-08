@@ -195,4 +195,7 @@ impl Dataset {
     }
 
     /// Use one hot encoding for the column at `index`
-    /// Note : the column at `index` is removed
+    /// Note : the column at `index` is removed and 
+    /// replaced with columns containing the one-hot-encoding
+    pub fn one_hot_encode(&mut self, index: usize) {
+        let distinct_val
