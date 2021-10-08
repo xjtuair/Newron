@@ -198,4 +198,8 @@ impl Dataset {
     /// Note : the column at `index` is removed and 
     /// replaced with columns containing the one-hot-encoding
     pub fn one_hot_encode(&mut self, index: usize) {
-        let distinct_val
+        let distinct_values = self.get_distinct_values(index);
+        let number_distinct_values = distinct_values.len();
+
+        // for each row in the dataset
+        for r
