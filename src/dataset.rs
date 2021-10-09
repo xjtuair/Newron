@@ -202,4 +202,6 @@ impl Dataset {
         let number_distinct_values = distinct_values.len();
 
         // for each row in the dataset
-        for r
+        for row in self.data.iter_mut() {
+            let value_to_encode = row.data[index];
+            let position = distinct_values.iter().positio
