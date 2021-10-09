@@ -206,4 +206,7 @@ impl Dataset {
             let value_to_encode = row.data[index];
             let position = distinct_values.iter().position(|&x| x == value_to_encode).unwrap();
             // create the base one-hot encoding filled with zeroes
-            let mut one_hot = vec![0
+            let mut one_hot = vec![0.0f64; number_distinct_values];
+            // Set the one at the correct position
+            one_hot[position] = 1.0;
+            // add one-hot vector inside the dataset
