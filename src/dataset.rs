@@ -210,3 +210,8 @@ impl Dataset {
             // Set the one at the correct position
             one_hot[position] = 1.0;
             // add one-hot vector inside the dataset
+            row.data.append(&mut one_hot);
+        }
+
+        // add as columns as elements in one-hot vector
+        for _col in 0..number_distinct_values 
