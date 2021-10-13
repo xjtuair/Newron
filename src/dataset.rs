@@ -214,4 +214,6 @@ impl Dataset {
         }
 
         // add as columns as elements in one-hot vector
-        for _col in 0..number_distinct_values 
+        for _col in 0..number_distinct_values {
+            let name = format!("Y"); // TODO: get unique col name
+            let column_type = ColumnType::Target; // TO
