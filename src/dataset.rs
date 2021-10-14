@@ -226,4 +226,9 @@ impl Dataset {
 
     /// Remove column at `index`
     pub fn remove_column(&mut self, index: usize) {
-        // remove column m
+        // remove column metadata
+        self.columns_metadata.remove(index);
+
+        // remove the specified column in data
+        for row in self.data.iter_mut() {
+            row.data.rem
