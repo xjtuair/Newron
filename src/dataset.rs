@@ -220,4 +220,10 @@ impl Dataset {
             self.columns_metadata.push(ColumnMetadata {name, column_type});
         }
 
-        // remov
+        // remove the old column
+        self.remove_column(index)
+    }
+
+    /// Remove column at `index`
+    pub fn remove_column(&mut self, index: usize) {
+        // remove column m
