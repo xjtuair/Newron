@@ -216,4 +216,8 @@ impl Dataset {
         // add as columns as elements in one-hot vector
         for _col in 0..number_distinct_values {
             let name = format!("Y"); // TODO: get unique col name
-            let column_type = ColumnType::Target; // TO
+            let column_type = ColumnType::Target; // TODO: set from method argument
+            self.columns_metadata.push(ColumnMetadata {name, column_type});
+        }
+
+        // remov
