@@ -241,3 +241,8 @@ impl Dataset {
         for row in &self.data {
             let value = row.data[index];
             if !result.contains(&value) {
+                result.push(value);
+            }
+        }
+        // sort values (float cannot be perfectly compared so we use partial_cmp)
+        resul
