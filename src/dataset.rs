@@ -236,4 +236,8 @@ impl Dataset {
     }
 
     /// Get all distinct values for column at `index` (sorted)
-    pub fn get_distinct_values(&self, index: usize) -> 
+    pub fn get_distinct_values(&self, index: usize) -> Vec<f64> {
+        let mut result = Vec::new();
+        for row in &self.data {
+            let value = row.data[index];
+            if !result.contains(&value) {
