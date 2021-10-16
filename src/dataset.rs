@@ -245,4 +245,9 @@ impl Dataset {
             }
         }
         // sort values (float cannot be perfectly compared so we use partial_cmp)
-        resul
+        result.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        result
+    }
+
+    /// Get the tensor from the dataset with the `row_type` and 
+    /// `co
