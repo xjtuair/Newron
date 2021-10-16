@@ -231,4 +231,9 @@ impl Dataset {
 
         // remove the specified column in data
         for row in self.data.iter_mut() {
-            row.data.rem
+            row.data.remove(index);
+        }
+    }
+
+    /// Get all distinct values for column at `index` (sorted)
+    pub fn get_distinct_values(&self, index: usize) -> 
