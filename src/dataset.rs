@@ -250,4 +250,6 @@ impl Dataset {
     }
 
     /// Get the tensor from the dataset with the `row_type` and 
-    /// `co
+    /// `column_type` specified.
+    pub fn get_tensor(&self, row_type: RowType, col_type: ColumnType) -> Tensor {
+        let rows = self.count_row_type(&row_type
