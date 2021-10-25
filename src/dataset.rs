@@ -257,4 +257,10 @@ impl Dataset {
         let shape = vec![rows, cols];
 
         let mut col_indexes = Vec::new();
-        for (i, col)
+        for (i, col) in self.columns_metadata.iter().enumerate() {
+            if col.column_type == col_type {
+                col_indexes.push(i);
+            }
+        }
+
+  
