@@ -252,4 +252,9 @@ impl Dataset {
     /// Get the tensor from the dataset with the `row_type` and 
     /// `column_type` specified.
     pub fn get_tensor(&self, row_type: RowType, col_type: ColumnType) -> Tensor {
-        let rows = self.count_row_type(&row_type
+        let rows = self.count_row_type(&row_type);
+        let cols = self.count_column_type(&col_type);
+        let shape = vec![rows, cols];
+
+        let mut col_indexes = Vec::new();
+        for (i, col)
