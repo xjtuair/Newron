@@ -277,4 +277,8 @@ impl Dataset {
 
     // Count the number of columns in the dataset matching the type `col_type`
     fn count_column_type(&self, col_type: &ColumnType) -> usize {
-        self.columns
+        self.columns_metadata.iter().filter(|&n| n.column_type == *col_type).count()
+    }
+
+    pub fn count_row_type(&self, row_type: &RowType) -> usize {
+        self.data.iter(
