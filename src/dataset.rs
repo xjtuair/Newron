@@ -275,4 +275,6 @@ impl Dataset {
         Tensor::new(result, shape)
     }
 
-    // Count the nu
+    // Count the number of columns in the dataset matching the type `col_type`
+    fn count_column_type(&self, col_type: &ColumnType) -> usize {
+        self.columns
