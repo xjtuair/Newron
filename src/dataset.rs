@@ -267,4 +267,12 @@ impl Dataset {
         for row in &self.data {
             if row.row_type == row_type {
                 for col in &col_indexes {
-       
+                    result.push(row.data[*col]);
+                }
+            }
+        }
+
+        Tensor::new(result, shape)
+    }
+
+    // Count the nu
