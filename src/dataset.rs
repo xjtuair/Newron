@@ -293,4 +293,8 @@ impl Dataset {
     }
 
     pub fn get_row_count(&self) -> usize {
-        self.data.le
+        self.data.len()
+    }
+
+    /// Set `percentage` of rows to be `RowType::Train`. Remaining rows are set
+    /// to `RowType::Test`. If `shuffle` is true, r
