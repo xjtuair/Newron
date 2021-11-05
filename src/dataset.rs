@@ -281,4 +281,11 @@ impl Dataset {
     }
 
     pub fn count_row_type(&self, row_type: &RowType) -> usize {
-        self.data.iter(
+        self.data.iter().filter(|&r| r.row_type == *row_type).count()
+    }
+
+    pub fn get_number_features(&self) -> usize {
+        self.count_column_type(&ColumnType::Feature)
+    }
+
+  
