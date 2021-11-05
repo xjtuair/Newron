@@ -288,4 +288,9 @@ impl Dataset {
         self.count_column_type(&ColumnType::Feature)
     }
 
-  
+    pub fn get_number_targets(&self) -> usize {
+        self.count_column_type(&ColumnType::Target)
+    }
+
+    pub fn get_row_count(&self) -> usize {
+        self.data.le
