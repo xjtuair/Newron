@@ -314,4 +314,13 @@ impl Dataset {
                 // train
                 self.data[idx].row_type = RowType::Train;
             }
-            else 
+            else {
+                // test
+                self.data[idx].row_type = RowType::Test;
+            }
+        }
+    }
+}
+
+// Implement Debug
+impl fmt::Debug for Da
