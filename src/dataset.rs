@@ -310,4 +310,8 @@ impl Dataset {
 
         for i in 0..self.data.len() {
             let idx = index[i];
-     
+            if i < stop_index {
+                // train
+                self.data[idx].row_type = RowType::Train;
+            }
+            else 
