@@ -303,4 +303,11 @@ impl Dataset {
         
         if shuffle {
             let mut rand = Rand::new(18);
-            rand.shuffle(&mut index[..]
+            rand.shuffle(&mut index[..]);
+        }
+
+        let stop_index = (percentage * index.len() as f64) as usize;
+
+        for i in 0..self.data.len() {
+            let idx = index[i];
+     
