@@ -299,4 +299,8 @@ impl Dataset {
     /// Set `percentage` of rows to be `RowType::Train`. Remaining rows are set
     /// to `RowType::Test`. If `shuffle` is true, rows are set randomly.
     pub fn split_train_test(&mut self, percentage: f64, shuffle: bool) {
-        let mut index = (0..self.da
+        let mut index = (0..self.data.len()).collect::<Vec<usize>>();
+        
+        if shuffle {
+            let mut rand = Rand::new(18);
+            rand.shuffle(&mut index[..]
