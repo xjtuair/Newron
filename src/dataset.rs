@@ -323,4 +323,8 @@ impl Dataset {
 }
 
 // Implement Debug
-impl fmt::Debug for Da
+impl fmt::Debug for Dataset {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}\n\
+        Observation(s): {} ({} train + {} test) \n\
+        
