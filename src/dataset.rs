@@ -327,4 +327,8 @@ impl fmt::Debug for Dataset {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{}\n\
         Observation(s): {} ({} train + {} test) \n\
-        
+        Feature(s): {}\n\
+        Target(s): {}\n\
+        ", self, &self.get_row_count(),
+        &self.count_row_type(&RowType::Train),
+        &self.count_
