@@ -331,4 +331,13 @@ impl fmt::Debug for Dataset {
         Target(s): {}\n\
         ", self, &self.get_row_count(),
         &self.count_row_type(&RowType::Train),
-        &self.count_
+        &self.count_row_type(&RowType::Test),
+        &self.get_number_features(),
+        &self.get_number_targets()
+    )
+    }
+}
+
+// Implement Display
+impl fmt::Display for Dataset {
+    fn f
