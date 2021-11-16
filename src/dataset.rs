@@ -349,4 +349,9 @@ impl fmt::Display for Dataset {
 
         // Construct table
         // 4 rows maximum
-        let rows = cmp::min(self
+        let rows = cmp::min(self.data.len(), 4);
+        // 12 cols maximum
+        let cols = cmp::min(self.data[0].data.len(), 12);
+
+        // Construct header
+        let mut 
