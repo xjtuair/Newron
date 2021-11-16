@@ -340,4 +340,8 @@ impl fmt::Debug for Dataset {
 
 // Implement Display
 impl fmt::Display for Dataset {
-    fn f
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        // Example :
+        // X_0 | X_1 | X_2 | Y
+        // 1   | 0   | 0   | 1
+ 
