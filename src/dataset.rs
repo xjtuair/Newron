@@ -344,4 +344,9 @@ impl fmt::Display for Dataset {
         // Example :
         // X_0 | X_1 | X_2 | Y
         // 1   | 0   | 0   | 1
- 
+        let sep = " | "; // separator
+        let mut result = String::new();
+
+        // Construct table
+        // 4 rows maximum
+        let rows = cmp::min(self
