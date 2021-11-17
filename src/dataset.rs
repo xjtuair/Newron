@@ -358,4 +358,8 @@ impl fmt::Display for Dataset {
         for c in &self.columns_metadata {
             headers.push(c.name.to_string());
         }
-   
+        let header_string = headers[0..cols].join(sep);
+        result.push_str(&header_string);
+
+        for row in 0..rows {
+           
