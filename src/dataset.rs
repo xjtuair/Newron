@@ -362,4 +362,7 @@ impl fmt::Display for Dataset {
         result.push_str(&header_string);
 
         for row in 0..rows {
-           
+            let mut temp_row: Vec<String> = Vec::new();
+            for col in 0..cols {
+                let col_len = headers[col].len();
+             
