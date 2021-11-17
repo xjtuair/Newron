@@ -365,4 +365,7 @@ impl fmt::Display for Dataset {
             let mut temp_row: Vec<String> = Vec::new();
             for col in 0..cols {
                 let col_len = headers[col].len();
-             
+                let mut value = self.data[row].data[col].to_string();
+                let value_len = value.len();
+                // if we must truncate value
+                if value_l
