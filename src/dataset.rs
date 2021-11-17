@@ -354,4 +354,8 @@ impl fmt::Display for Dataset {
         let cols = cmp::min(self.data[0].data.len(), 12);
 
         // Construct header
-        let mut 
+        let mut headers = Vec::new();
+        for c in &self.columns_metadata {
+            headers.push(c.name.to_string());
+        }
+   
