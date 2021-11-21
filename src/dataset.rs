@@ -368,4 +368,7 @@ impl fmt::Display for Dataset {
                 let mut value = self.data[row].data[col].to_string();
                 let value_len = value.len();
                 // if we must truncate value
-                if value_l
+                if value_len > col_len {
+                    value = value[0..col_len].to_string();
+                }
+                // otherwise, we must pad with wh
