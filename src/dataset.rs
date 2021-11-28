@@ -376,4 +376,10 @@ impl fmt::Display for Dataset {
                     value = value + &" ".repeat(col_len - value_len);
                 }
 
+                temp_row.push(value);
+            }
+            result.push_str("\n");
+            result.push_str(&temp_row.join(sep));
+        }
         
+     
