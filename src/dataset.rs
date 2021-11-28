@@ -382,4 +382,7 @@ impl fmt::Display for Dataset {
             result.push_str(&temp_row.join(sep));
         }
         
-     
+        write!(f, "{}", result)
+    }
+}
+
