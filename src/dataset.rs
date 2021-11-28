@@ -371,4 +371,9 @@ impl fmt::Display for Dataset {
                 if value_len > col_len {
                     value = value[0..col_len].to_string();
                 }
-                // otherwise, we must pad with wh
+                // otherwise, we must pad with whitespaces
+                else {
+                    value = value + &" ".repeat(col_len - value_len);
+                }
+
+        
