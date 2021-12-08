@@ -13,4 +13,6 @@ pub struct Dense {
 
 impl Dense {
     pub fn new(input_units: usize, output_units: usize, seed: u32) -> Dense {
-        // initialize
+        // initialize with random values following special normal distribution
+        // allowing theoritical faster convergence (Xavier Initialization)
+        let
