@@ -15,4 +15,7 @@ impl Dense {
     pub fn new(input_units: usize, output_units: usize, seed: u32) -> Dense {
         // initialize with random values following special normal distribution
         // allowing theoritical faster convergence (Xavier Initialization)
-        let
+        let variance_w = 2.0 / (input_units + output_units) as f64;
+        let variance_b = 2.0 / (output_units) as f64;
+        Dense {
+            input: Tensor::new(vec!
