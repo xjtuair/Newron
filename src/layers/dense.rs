@@ -22,4 +22,12 @@ impl Dense {
             weights: Tensor::random_normal(vec![input_units, output_units], 0.0, variance_w, seed),
             biases: Tensor::random_normal(vec![1, output_units], 1.0, variance_b, seed),
             weights_grad: Tensor::new(vec![], vec![]),
-            biases_grad:
+            biases_grad: Tensor::new(vec![], vec![])
+        }
+    }
+}
+
+impl Layer for Dense {
+    fn get_info(&self) -> LayerInfo {
+        LayerInfo {
+            layer_t
