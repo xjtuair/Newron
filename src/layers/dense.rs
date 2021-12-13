@@ -18,4 +18,6 @@ impl Dense {
         let variance_w = 2.0 / (input_units + output_units) as f64;
         let variance_b = 2.0 / (output_units) as f64;
         Dense {
-            input: Tensor::new(vec!
+            input: Tensor::new(vec![], vec![]),
+            weights: Tensor::random_normal(vec![input_units, output_units], 0.0, variance_w, seed),
+            biases: Tensor::
