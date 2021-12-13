@@ -20,4 +20,6 @@ impl Dense {
         Dense {
             input: Tensor::new(vec![], vec![]),
             weights: Tensor::random_normal(vec![input_units, output_units], 0.0, variance_w, seed),
-            biases: Tensor::
+            biases: Tensor::random_normal(vec![1, output_units], 1.0, variance_b, seed),
+            weights_grad: Tensor::new(vec![], vec![]),
+            biases_grad:
