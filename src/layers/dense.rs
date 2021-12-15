@@ -30,4 +30,7 @@ impl Dense {
 impl Layer for Dense {
     fn get_info(&self) -> LayerInfo {
         LayerInfo {
-            layer_t
+            layer_type: format!("Dense"),
+            output_shape: self.weights.shape.to_vec(),
+            trainable_param: self.weights.shape.iter().product(),
+            non_trainable_param: 0
