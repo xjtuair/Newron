@@ -40,4 +40,8 @@ impl Layer for Dense {
     fn forward(&mut self, input: Tensor, _training: bool) -> Tensor {
         // Perform an affine transformation:
         // f(x) = <W*x> + b
-   
+        
+        // input shape: [batch, input_units]
+        // output shape: [batch, output units]
+        self.input = input;
+        /
