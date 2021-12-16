@@ -33,4 +33,11 @@ impl Layer for Dense {
             layer_type: format!("Dense"),
             output_shape: self.weights.shape.to_vec(),
             trainable_param: self.weights.shape.iter().product(),
-            non_trainable_param: 0
+            non_trainable_param: 0,
+        }
+    }
+
+    fn forward(&mut self, input: Tensor, _training: bool) -> Tensor {
+        // Perform an affine transformation:
+        // f(x) = <W*x> + b
+   
