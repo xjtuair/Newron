@@ -52,4 +52,5 @@ impl Layer for Dense {
 
     fn backward(&mut self, gradient: &Tensor) -> Tensor {
         // compute d f / d x = d f / d dense * d dense / d x
-    
+        // where d dense/ d x = weights transposed
+        // panic!("input.T {:?}  grad {:?}", &self.input.get_transpose().shape, gradient.shape)
