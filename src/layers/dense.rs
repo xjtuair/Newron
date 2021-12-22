@@ -47,4 +47,9 @@ impl Layer for Dense {
         // panic!("input: {:?}", &self.input * &self.weights);
 
         &self.input * &self.weights + &self.biases
-        // &self.input.dot(&self.weights) 
+        // &self.input.dot(&self.weights) + &self.biases
+    }
+
+    fn backward(&mut self, gradient: &Tensor) -> Tensor {
+        // compute d f / d x = d f / d dense * d dense / d x
+    
