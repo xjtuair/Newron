@@ -61,4 +61,8 @@ impl Layer for Dense {
         assert_eq!(self.biases_grad.shape, self.biases.shape, "Wrong shape for biases gradients.");
 
         let grad_input = gradient * &self.weights.get_transpose();
-        gr
+        grad_input
+    }
+
+    fn get_params_list(&self) -> Vec<LearnableParams> {
+        vec![LearnableParams::Weights, LearnableParams::Bia
