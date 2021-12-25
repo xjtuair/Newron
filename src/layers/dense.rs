@@ -70,4 +70,11 @@ impl Layer for Dense {
 
     fn get_grad(&self, param: &LearnableParams) -> &Tensor {
         match param {
-            LearnableParams::We
+            LearnableParams::Weights => {
+                &self.weights_grad
+            }
+            LearnableParams::Biases => {
+                &self.biases_grad
+            }
+        }
+    }
