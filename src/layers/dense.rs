@@ -65,4 +65,9 @@ impl Layer for Dense {
     }
 
     fn get_params_list(&self) -> Vec<LearnableParams> {
-        vec![LearnableParams::Weights, LearnableParams::Bia
+        vec![LearnableParams::Weights, LearnableParams::Biases]
+    }
+
+    fn get_grad(&self, param: &LearnableParams) -> &Tensor {
+        match param {
+            LearnableParams::We
