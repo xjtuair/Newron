@@ -78,3 +78,7 @@ impl Layer for Dense {
             }
         }
     }
+
+    fn get_param(&mut self, param: &LearnableParams) -> &mut Tensor {
+        match param {
+            LearnableParams::Weight
