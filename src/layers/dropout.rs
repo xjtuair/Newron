@@ -14,4 +14,6 @@ pub struct Dropout {
 
 impl Dropout {
     pub fn new(prob: f64, seed: u32) -> Dropout {
-       
+        // panic of prob is lesser than an arbitrary small value
+        // since we use inverse dropout
+        // (so we divide 1 by prob = infinity wh
