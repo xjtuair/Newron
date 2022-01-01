@@ -85,4 +85,9 @@ impl Layer for Dense {
                 &mut self.weights
             }
             LearnableParams::Biases => {
-                &mut self.bia
+                &mut self.biases
+            }
+        }
+    }
+
+}
