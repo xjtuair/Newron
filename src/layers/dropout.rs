@@ -7,4 +7,11 @@ pub struct Dropout {
     input: Tensor,
     prob: f64,
     // Store the seed so the Dropout struct can increment it
-    // to g
+    // to generate new masks at each forward pass
+    seed: u32, 
+    mask: Tensor
+}
+
+impl Dropout {
+    pub fn new(prob: f64, seed: u32) -> Dropout {
+       
