@@ -19,4 +19,11 @@ impl Dropout {
         // (so we divide 1 by prob = infinity when prob is close to zero)
         
         if (1.0 - prob) < 0.01 {
-            panic!("Dropout prob {} is to small to be computed efficiently !", prob)
+            panic!("Dropout prob {} is to small to be computed efficiently !", prob);
+        }
+        
+        Dropout {
+            input: Tensor::new(vec![], vec![]),
+            prob,
+            seed,
+            mask: Tensor::new(vec!
