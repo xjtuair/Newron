@@ -26,4 +26,12 @@ impl Dropout {
             input: Tensor::new(vec![], vec![]),
             prob,
             seed,
-            mask: Tensor::new(vec!
+            mask: Tensor::new(vec![], vec![])
+        }
+    }
+}
+
+impl Layer for Dropout {
+    fn get_info(&self) -> LayerInfo {
+        LayerInfo {
+            layer_type: format!("Dropout {:.2}%", s
