@@ -34,4 +34,11 @@ impl Dropout {
 impl Layer for Dropout {
     fn get_info(&self) -> LayerInfo {
         LayerInfo {
-            layer_type: format!("Dropout {:.2}%", s
+            layer_type: format!("Dropout {:.2}%", self.prob*100.0),
+            output_shape: vec![],
+            trainable_param: 0,
+            non_trainable_param: 0,
+        }
+    }
+
+    fn forward(&mut s
