@@ -43,4 +43,9 @@ impl Layer for Dropout {
 
     fn forward(&mut self, input: Tensor, training: bool) -> Tensor {
         // We don't use dropout for inference (training = false)
-        if 
+        if training == false {
+            self.input = input.clone();
+            return input;
+        }
+
+        // Generate a random mask at each f
