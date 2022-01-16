@@ -51,4 +51,11 @@ impl Layer for Dropout {
         // Generate a random mask at each forward pass
         // We use inverted dropout instead of the classic one here
         self.seed += 1;
-        self.mask = Tensor::mask(&input.sha
+        self.mask = Tensor::mask(&input.shape, self.prob, self.seed);
+        let masked_output = input.mult_el(&self.mask);
+        self.input = input;
+
+        masked_output
+    }
+
+    fn bac
