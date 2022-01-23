@@ -70,4 +70,8 @@ impl Layer for Dropout {
         panic!("Layer does not have learnable parameters.")
     }
 
-    fn
+    fn get_param(&mut self, _param: &LearnableParams) -> &mut Tensor {
+        panic!("Layer does not have learnable parameters.")
+    }
+
+}
