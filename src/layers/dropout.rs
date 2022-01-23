@@ -58,4 +58,9 @@ impl Layer for Dropout {
         masked_output
     }
 
-    fn bac
+    fn backward(&mut self, gradient: &Tensor) -> Tensor {
+        gradient.mult_el(&self.mask)
+    }
+
+    fn get_params_list(&self) -> Vec<LearnableParams> {
+   
