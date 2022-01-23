@@ -63,4 +63,11 @@ impl Layer for Dropout {
     }
 
     fn get_params_list(&self) -> Vec<LearnableParams> {
-   
+        vec![]
+    }
+
+    fn get_grad(&self, _param: &LearnableParams) -> &Tensor {
+        panic!("Layer does not have learnable parameters.")
+    }
+
+    fn
