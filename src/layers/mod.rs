@@ -7,4 +7,11 @@ pub mod sigmoid;
 pub mod dropout;
 
 pub enum LayerEnum {
-    Dense {inpu
+    Dense {input_units: usize, output_units: usize},
+    ReLU,
+    Softmax,
+    Sigmoid,
+    TanH,
+    Dropout {prob: f64}
+}
+
