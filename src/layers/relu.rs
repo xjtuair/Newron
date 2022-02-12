@@ -1,2 +1,10 @@
 use crate::layers::layer::LayerInfo;
-use cr
+use crate::layers::layer::Layer;
+use crate::tensor::Tensor;
+use crate::layers::layer::LearnableParams;
+
+pub struct ReLU {
+    input: Tensor
+}
+
+impl Laye
