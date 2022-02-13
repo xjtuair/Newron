@@ -7,4 +7,8 @@ pub struct ReLU {
     input: Tensor
 }
 
-impl Laye
+impl Layer for ReLU {
+    fn get_info(&self) -> LayerInfo {
+        LayerInfo {
+            layer_type: format!("ReLU"),
+            output_shape: self.inp
