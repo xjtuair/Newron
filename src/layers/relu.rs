@@ -17,4 +17,9 @@ impl Layer for ReLU {
         }
     }
 
-    fn forward(&mut self, input: Tensor, _tra
+    fn forward(&mut self, input: Tensor, _training: bool) -> Tensor {
+        self.input = input;
+        self.input.map(|x| x.max(0.0))
+    }
+
+    fn backward(&mut self, gradient: &Tensor) -> Tensor {
