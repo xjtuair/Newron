@@ -23,3 +23,8 @@ impl Layer for ReLU {
     }
 
     fn backward(&mut self, gradient: &Tensor) -> Tensor {
+        let relu_grad = self.input.map(|x| if x > 0.0 { 1.0 } else { 0.0 });
+        gradient.mult_el(&relu_grad)
+    }
+
+    fn get_params_list(&
