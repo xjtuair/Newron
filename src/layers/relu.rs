@@ -11,4 +11,10 @@ impl Layer for ReLU {
     fn get_info(&self) -> LayerInfo {
         LayerInfo {
             layer_type: format!("ReLU"),
-            output_shape: self.inp
+            output_shape: self.input.shape.to_vec(),
+            trainable_param: 0,
+            non_trainable_param: 0,
+        }
+    }
+
+    fn forward(&mut self, input: Tensor, _tra
