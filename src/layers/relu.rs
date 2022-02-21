@@ -27,4 +27,10 @@ impl Layer for ReLU {
         gradient.mult_el(&relu_grad)
     }
 
-    fn get_params_list(&
+    fn get_params_list(&self) -> Vec<LearnableParams> {
+        vec![]
+    }
+
+
+    fn get_grad(&self, _param: &LearnableParams) -> &Tensor {
+        panic!("Layer does not have learnable p
