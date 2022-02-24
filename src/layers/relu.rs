@@ -37,4 +37,14 @@ impl Layer for ReLU {
     }
 
     fn get_param(&mut self, _param: &LearnableParams) -> &mut Tensor {
-        panic!("Layer does not have learnabl
+        panic!("Layer does not have learnable parameters.")
+    }
+}
+
+impl ReLU {
+    pub(crate) fn new() -> ReLU {
+        ReLU {
+            input: Tensor::new(vec![], vec![])
+        }
+    }
+}
