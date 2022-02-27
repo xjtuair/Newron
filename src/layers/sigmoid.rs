@@ -19,4 +19,9 @@ impl Layer for Sigmoid {
     }
 
     fn forward(&mut self, input: Tensor, _training: bool) -> Tensor {
- 
+        self.input = input;
+        self.input.map(|x| Sigmoid::sigmoid(x))
+    }
+
+    fn backward(&mut self, gradient: &Tensor) -> Tensor {
+  
