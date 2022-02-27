@@ -7,4 +7,8 @@ pub struct Sigmoid {
     input: Tensor
 }
 
-impl Layer
+impl Layer for Sigmoid {
+    fn get_info(&self) -> LayerInfo {
+        LayerInfo {
+            layer_type: format!("Sigmoid"),
+            output_shape: self.input.shape.to_vec()
