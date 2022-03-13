@@ -24,4 +24,8 @@ impl Layer for Sigmoid {
     }
 
     fn backward(&mut self, gradient: &Tensor) -> Tensor {
-  
+        let tanh_grad = self.input.map(|x| Sigmoid::sigmoid_prime(x));
+        gradient.mult_el(&tanh_grad)
+    }
+
+    fn get_params_list(&self) -> Vec<Le
