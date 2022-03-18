@@ -33,4 +33,8 @@ impl Layer for Sigmoid {
     }
     
     fn get_grad(&self, _param: &LearnableParams) -> &Tensor {
-        panic!("Layer does not have learnable parame
+        panic!("Layer does not have learnable parameters.")
+    }
+
+    fn get_param(&mut self, _param: &LearnableParams) -> &mut Tensor {
+        panic!("Layer does not hav
