@@ -28,4 +28,9 @@ impl Layer for Sigmoid {
         gradient.mult_el(&tanh_grad)
     }
 
-    fn get_params_list(&self) -> Vec<Le
+    fn get_params_list(&self) -> Vec<LearnableParams> {
+        vec![]
+    }
+    
+    fn get_grad(&self, _param: &LearnableParams) -> &Tensor {
+        panic!("Layer does not have learnable parame
