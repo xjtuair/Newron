@@ -55,4 +55,6 @@ impl Sigmoid {
         Sigmoid {
             input: Tensor::new(vec![], vec![])
         }
-   
+    }
+
+}
