@@ -48,4 +48,11 @@ impl Sigmoid {
     }
 
     pub fn sigmoid_prime(x: f64) -> f64 {
-        Self::sigm
+        Self::sigmoid(x) * (1. - Self::sigmoid(x))
+    }
+
+    pub fn new() -> Sigmoid {
+        Sigmoid {
+            input: Tensor::new(vec![], vec![])
+        }
+   
