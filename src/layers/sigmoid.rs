@@ -37,4 +37,15 @@ impl Layer for Sigmoid {
     }
 
     fn get_param(&mut self, _param: &LearnableParams) -> &mut Tensor {
-        panic!("Layer does not hav
+        panic!("Layer does not have learnable parameters.")
+
+    }
+}
+
+impl Sigmoid {
+    pub fn sigmoid(x: f64) -> f64 {
+        1. / (1. + (-x).exp())
+    }
+
+    pub fn sigmoid_prime(x: f64) -> f64 {
+        Self::sigm
