@@ -4,4 +4,6 @@ pub mod loss;
 pub mod optimizers;
 pub mod metrics;
 pub mod sequential;
-pub
+pub mod tensor;
+mod random;
+pub mod utils;
