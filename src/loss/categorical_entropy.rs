@@ -12,4 +12,7 @@ impl Loss for CategoricalEntropy {
 
         let mut p = Vec::new();
         for (row, indice) in indices.iter().enumerate() {
-     
+            p.push(softmax_value.get_value(row, *indice));
+        }
+
+        let log_likelihood: Vec<f64> = p.iter().map(|x| -(x.ln())).collect
