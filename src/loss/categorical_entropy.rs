@@ -15,4 +15,9 @@ impl Loss for CategoricalEntropy {
             p.push(softmax_value.get_value(row, *indice));
         }
 
-        let log_likelihood: Vec<f64> = p.iter().map(|x| -(x.ln())).collect
+        let log_likelihood: Vec<f64> = p.iter().map(|x| -(x.ln())).collect();
+        log_likelihood.iter().sum::<f64>() / m as f64
+    }
+
+    fn compute_loss_grad(&self, y_true: &Tensor, y_pred: &Tensor) -> Tensor {
+        let rows = y_true
