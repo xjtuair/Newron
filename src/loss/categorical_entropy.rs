@@ -20,4 +20,9 @@ impl Loss for CategoricalEntropy {
     }
 
     fn compute_loss_grad(&self, y_true: &Tensor, y_pred: &Tensor) -> Tensor {
-        let rows = y_true
+        let rows = y_true.shape[0];
+        let cols = y_true.shape[1];
+
+        let indices = utils::one_hot_encoded_tensor_to_indices(y_true);
+
+        // Even if last 
