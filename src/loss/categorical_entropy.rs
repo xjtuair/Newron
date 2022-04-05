@@ -25,4 +25,7 @@ impl Loss for CategoricalEntropy {
 
         let indices = utils::one_hot_encoded_tensor_to_indices(y_true);
 
-        // Even if last 
+        // Even if last layer is Softmax, we softmax-it again for numerical stability
+        let softmax_value = Softmax::softmax(y_pred);
+
+        let mut data: Vec<f64> = Vec::new();
