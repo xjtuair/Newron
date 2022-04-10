@@ -38,4 +38,13 @@ impl Loss for CategoricalEntropy {
                 value /= rows as f64;
                 data.push(value);
             }
-     
+        }
+
+        Tensor {
+            data,
+            shape: vec![rows, cols]
+        }
+
+    }
+}
+
