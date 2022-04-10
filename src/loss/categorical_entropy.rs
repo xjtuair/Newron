@@ -33,4 +33,9 @@ impl Loss for CategoricalEntropy {
         for row in 0..rows {
             for col in 0..cols {
                 let indice = indices[row];
-                let mut value = softmax_value.get
+                let mut value = softmax_value.get_value(row, col);
+                if col == indice { value -= 1.0 }
+                value /= rows as f64;
+                data.push(value);
+            }
+     
