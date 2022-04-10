@@ -29,3 +29,8 @@ impl Loss for CategoricalEntropy {
         let softmax_value = Softmax::softmax(y_pred);
 
         let mut data: Vec<f64> = Vec::new();
+
+        for row in 0..rows {
+            for col in 0..cols {
+                let indice = indices[row];
+                let mut value = softmax_value.get
