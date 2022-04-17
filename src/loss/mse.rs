@@ -7,4 +7,8 @@ impl Loss for MSE {
         loss
     }
 
-    fn compute_loss_grad(&self, y_true: &Tensor, y_pred: &Tens
+    fn compute_loss_grad(&self, y_true: &Tensor, y_pred: &Tensor) -> Tensor {
+        let loss: Tensor = 2.0 * (y_pred - y_true);
+        loss
+    }
+}
