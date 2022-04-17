@@ -60,3 +60,18 @@ impl ConfusionMatrix {
     /// The precision for the input class is the number of
     /// correctly predicted input class out of all predicted input class
     pub fn precision_score(&self, class: usize) -> f64 {
+        let correct_class: usize = self.data[class][class];
+        let actual_class = (0..self.data.len())
+            .map(|v| self.data[class][v])
+            .sum::<usize>() as f64;
+
+        correct_class as f64 / actual_class
+    }
+
+    /// Harmonic mean of the precision and recall
+    pub fn f1_score(&self, class: usize) -> f64 {
+        (2.0 * self.recall_score(class) * self.precision_score(class))
+            / (self.recall_score(class) + self.precision_score(class))
+    }
+
+}
