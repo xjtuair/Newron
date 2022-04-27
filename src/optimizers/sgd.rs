@@ -9,4 +9,7 @@ impl SGD {
     pub fn new(lr: f64) -> Self { Self { lr } }
 }
 
-impl Optimizer
+impl OptimizerStep for SGD {
+    fn step(&self, layers: &mut [Box<dyn Layer>]) {
+        for layer in layers.iter_mut() {
+            for param in layer.get
