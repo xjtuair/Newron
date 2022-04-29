@@ -12,4 +12,8 @@ impl SGD {
 impl OptimizerStep for SGD {
     fn step(&self, layers: &mut [Box<dyn Layer>]) {
         for layer in layers.iter_mut() {
-            for param in layer.get
+            for param in layer.get_params_list() {
+                let grad = layer.get_grad(&param).clone();
+                
+                let param_to_update = &mut *layer.get_param(&param);
+ 
