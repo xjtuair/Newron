@@ -176,3 +176,98 @@ Layer (type)                 Output Shape              Param #
             let y_batch = y_train.get_rows(batch_indices);
 
             result.push(Batch {inputs: x_batch, targets: y_batch});
+        }
+    
+        result
+    }
+
+    /// Use this function to train the model on x_train with target y_train.
+    /// Set `verbose` to true to see debugging and training information.
+    pub fn fit(&mut self, dataset: &Dataset, epochs: u32, verbose: bool) {
+
+        // TODO: Check model architecture (input_unit == x_train.len(),
+        // output_unit_l == input_unit_l+1, output_unit_l_n = y_train.len()) and display message here
+        
+        // auto batch size : TODO improve it
+        let batch_size = cmp::min(dataset.count_row_type(&RowType::Train), 128);
+    
+        for epoch in 0..epochs {
+            let mut epoch_loss = 0.0;
+
+            let batches = self.get_batches(dataset, batch_size, false);
+            let batches_len = batches.len() as f64;
+
+            for batch in batches {
+                // Train our network on a given batch (containing features & targets).
+                // We first need to run forward to get all layer activations.
+                // Then we can run layer.backward going from last to first layer.
+
+                // Forward pass to get the predicted value
+                let predicted = self.forward_propagation(batch.inputs, true);
+                
+                // compute loss and average loss gradient
+                epoch_loss += self.loss.compute_loss(&batch.targets, &predicted);
+                
+                // Compute the loss gradient
+                let loss_grad = self.loss.compute_loss_grad(&batch.targets, &predicted);
+                
+                // Compute layers gradient
+                self.backward_propagation(loss_grad);
+
+                // Update parameters according to the Optimizer specified
+                self.optim.step(&mut self.layers);
+            }
+
+            if verbose {
+                println!("\n------\nEpoch: {}", epoch);
+                println!("Train loss: {:.4}", epoch_loss/ batches_len);
+
+                if dataset.count_row_type(&RowType::Test) > 0 {
+                    let test_predictions = self.predict_tensor(dataset.get_tensor(RowType::Test, ColumnType::Feature));
+                    let test_true_values = &dataset.get_tensor(RowType::Test, ColumnType::Target);
+                    assert_eq!(test_predictions.shape, test_true_values.shape, "Something wrong happened... o_O");
+                    let test_loss = self.loss.compute_loss(test_true_values, &test_predictions);
+                    println!("Test loss:  {:.4}", test_loss);
+
+                    for metric in &self.metrics {
+                        let cm = confusion_matrix::ConfusionMatrix::new(
+                            test_true_values.clone(), 
+                            test_predictions.clone()
+                        );
+                        match metric {
+                            Metric::Accuracy => {
+                                let acc_score = cm.accuracy_score();
+                                println!("Accuracy: {:.2}%", acc_score * 100.0);
+                            }
+                            Metric::Recall => {
+                                let class = 1;
+                                let recall_score = cm.recall_score(class);
+                                println!("Recall: {:.2}%", recall_score * 100.0);
+                            }
+                            Metric::Precision => {
+                                let class = 1;
+                                let precision_score = cm.precision_score(class);
+                                println!("Precision: {:.2}%", precision_score * 100.0);
+                            }
+                            Metric::F1 => {
+                                let class = 1;
+                                let f1_score = cm.f1_score(class);
+                                println!("F1 Score: {:.2}%", f1_score * 100.0);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    pub fn predict(&mut self, input: &Vec<f64>) -> Tensor {
+        let tensor_input = Tensor::new(input.to_vec(), vec![1, input.to_vec().len()]);
+        self.predict_tensor(tensor_input)
+    }
+
+    pub fn predict_tensor(&mut self, input: Tensor) -> Tensor {
+        // The output of the network is the last layer output
+        self.forward_propagation(input, false)
+    }
+}
