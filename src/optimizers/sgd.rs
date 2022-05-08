@@ -16,4 +16,9 @@ impl OptimizerStep for SGD {
                 let grad = layer.get_grad(&param).clone();
                 
                 let param_to_update = &mut *layer.get_param(&param);
- 
+     
+                *param_to_update -= self.lr * grad;
+            }
+        }
+    }
+}
