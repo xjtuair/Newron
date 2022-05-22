@@ -354,3 +354,156 @@ impl<'b> Add<&'b Tensor> for Tensor {
 }
 
 // Implement addition for tensor
+impl Add for Tensor {
+    type Output = Tensor;
+
+    fn add(self, other: Tensor) -> Tensor {
+        &self + &other
+    }
+}
+
+// Implement substraction for tensor
+impl<'a, 'b> Sub<&'b Tensor> for &'b Tensor {
+    type Output = Tensor;
+
+    fn sub(self, other: &'b Tensor) -> Tensor {
+        if self.shape.len() > 1 && other.shape.len() > 1 {
+            if self.shape[1] != other.shape[1] {
+                panic!("Could not substract 2 tensors of different. {:?} - {:?}", self, other);
+            }          
+        }
+
+        let mut data = Vec::new();
+        for i in 0..cmp::max(self.data.len(), other.data.len()) {
+            let a = self.data[i % self.data.len()];
+            let b = other.data[i % other.data.len()];
+            data.push(a - b);
+        }
+
+        Tensor {
+            data,
+            shape: self.shape.to_vec(),
+        }
+    }
+}
+
+// Implement substract assignation for tensor
+// E.g : tensor -= other_tensor
+impl SubAssign for Tensor {
+    fn sub_assign(&mut self, other: Self) {
+        *self = Self {
+            data: self
+                .data
+                .iter()
+                .zip(other.data.iter())
+                .map(|(a, b)| a - b)
+                .collect(),
+            shape: self.shape.to_vec(),
+        };
+    }
+}
+
+impl<'a> SubAssign<&'a Tensor> for Tensor {
+    fn sub_assign(&mut self, other: &'a Tensor) {
+        *self = Self {
+            data: self
+                .data
+                .iter()
+                .zip(other.data.iter())
+                .map(|(a, b)| a - b)
+                .collect(),
+            shape: self.shape.to_vec(),
+        };
+    }
+}
+
+
+// Implement multiplication for tensor
+impl<'a, 'b> Mul<&'b Tensor> for &'a Tensor {
+    type Output = Tensor;
+
+    fn mul(self, other: &'b Tensor) -> Tensor {
+        if self.shape.len() != self.shape.len() {
+            panic!("Could not multiply tensors of different dimensions");
+        }
+
+        Tensor {
+            data: match self.shape.len() {
+                0 => vec![self.data[0] * other.data[0]],
+                1 => self
+                    .data
+                    .iter()
+                    .zip(other.data.iter())
+                    .map(|(a, b)| a * b)
+                    .collect(),
+                2 => {
+                    // if # of cols of A is != # rows of B
+                    if self.shape[1] != other.shape[0] {
+                        panic!("Could not multiply matrix if # cols of A is different # rows of B.\nA: {:?}\nB: {:?}", self, other);
+                    }
+
+                    // C = A*B = (m,n) * (n, k) = (m, k)
+
+                    let m = self.shape[0]; // # rows of A
+                    let n = self.shape[1]; // # cols of A
+                    let k = other.shape[1]; // # cols of B
+
+                    // let mut c: Vec<f64> = Vec::with_capacity(m * k);
+                    let mut c: Vec<f64> = Vec::new();
+                    for i in 0..m {
+                        for j in 0..k {
+                            let mut c_ij = 0.0;
+                            for s in 0..n {
+                                c_ij = c_ij + &self.get_value(i, s) * &other.get_value(s, j);
+                            }
+                            c.push(c_ij);
+                        }
+                    }
+
+                    c
+                }
+                _ => unimplemented!("Multiplication not implemented for Tensor of dimension > 2"),
+            },
+
+            shape: match &self.shape.len() {
+                0 => self.shape.to_vec(), // empty vec
+                1 | 2 => vec![self.shape[0], other.shape[1]],
+                _ => panic!("unsupported dimension*"),
+            },
+        }
+    }
+}
+
+// Implement multiplication for tensor with scalar (f64)
+// Multiplication is element-wise in this case
+impl Mul<f64> for Tensor {
+    type Output = Tensor;
+
+    fn mul(self, other: f64) -> Tensor {
+        Tensor {
+            data: self.data.iter().map(|a| a * other).collect(),
+            shape: self.shape.to_vec(),
+        }
+    }
+}
+
+impl Mul<Tensor> for f64 {
+    type Output = Tensor;
+
+    fn mul(self, other: Tensor) -> Tensor {
+        Tensor {
+            data: other.data.iter().map(|a| a * self).collect(),
+            shape: other.shape.to_vec(),
+        }
+    }
+}
+
+impl<'a> Mul<&'a Tensor> for f64 {
+    type Output = Tensor;
+
+    fn mul(self, other: &'a Tensor) -> Tensor {
+        Tensor {
+            data: other.data.iter().map(|a| a * self).collect(),
+            shape: other.shape.to_vec(),
+        }
+    }
