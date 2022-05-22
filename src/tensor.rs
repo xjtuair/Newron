@@ -208,3 +208,149 @@ impl Tensor {
         for i in indices {
             data.extend(self.get_row(*i).data.iter());
         }
+        Tensor {
+            data,
+            shape: vec![indices.len(), self.shape[1]],
+        }
+    }
+
+    pub fn add_row(&mut self, row: Vec<f64>) {
+        // increment row count
+        self.shape[0] += 1;
+
+        // add data
+        self.data.extend(row);
+    }
+
+    /// Creates a new Tensor where the function `f` is applied
+    /// element-wise. Does not change the shape of tensor.
+    pub fn map(&self, f: fn(f64) -> f64) -> Tensor {
+        Tensor {
+            data: self.data.to_vec().into_iter().map(f).collect(),
+            shape: self.shape.to_vec(),
+        }
+    }
+
+    /// Normalize each row of the Tensor (using row = value - max(row))
+    pub fn normalize_rows(&self) -> Tensor {
+        let mut data = Vec::new();
+
+        let mut max_for_each_rows = Vec::with_capacity(self.shape[0]);
+
+        for row in 0..self.shape[0] {
+            let mut max = self.get_value(row, 0);
+            for col in 0..self.shape[1] {               
+                let val = self.get_value(row, col);
+                if val > max {
+                    max = val;
+                }
+            }
+            max_for_each_rows.push(max);
+        }
+
+        for row in 0..self.shape[0] {
+            for col in 0..self.shape[1] {
+                data.push(self.get_value(row, col) - max_for_each_rows[row]);
+            }
+        }
+
+        Tensor {
+            data,
+            shape: self.shape.to_vec(),
+        }
+    }
+
+    /// Dot product much like the numpy implementation
+    /// Dot product of two arrays. Specifically :
+    /// If both a and b are 1-D arrays, it is inner product of vectors (without complex conjugation). TODO
+    /// If both a and b are 2-D arrays, it is matrix multiplication, but using matmul or a @ b is preferred. TODO
+    /// If either a or b is 0-D (scalar), it is equivalent to multiply and using numpy.multiply(a, b) or a * b is preferred. TODO
+    /// If a is an N-D array and b is a 1-D array, it is a sum product over the last axis of a and b. OK
+    /// If a is an N-D array and b is an M-D array (where M>=2), it is a sum product over the last axis of a and the second-to-last axis of b. TODO
+    pub fn dot(&self, other: &Tensor) -> Tensor {
+        if self.shape.len() > 1 && other.shape[0] == 1 {
+            // Sum product over the last axis of self and other
+            let mut sum_product = Vec::new();
+
+            for i in 0..self.shape[1] {
+                let mut t = 0.0;
+                // TODO improve with N dimensions for &self (current implementation works only for Matrix)
+                for j in 0..other.shape[1] {
+                    t += other.data[j] * self.get_value(j, i);
+                }
+                sum_product.push(t);
+            }
+
+            return Tensor::new(sum_product, vec![1, self.shape[1]]);
+        } else if self.shape[1] == other.shape[0] {
+            return self * other;
+        } else {
+            unimplemented!("Dot function not complete yet dot({:?},{:?}).", self, other)
+        }
+    }
+
+    /// Element-wise multiplication (or Hadamard product)
+    pub fn mult_el(&self, other: &Tensor) -> Tensor {
+        assert_eq!(self.shape, other.shape);
+
+        Tensor::new(
+            self.data
+                .iter()
+                .zip(other.data.iter())
+                .map(|(a, b)| a * b)
+                .collect(),
+            self.shape.to_vec(),
+        )
+    }
+}
+
+// Implement addition for tensor references
+impl<'a, 'b> Add<&'b Tensor> for &'b Tensor {
+    type Output = Tensor;
+
+    fn add(self, other: &'b Tensor) -> Tensor {
+        if self.shape.len() > 1 && other.shape.len() > 1 {
+            if self.shape[1] != other.shape[1] {
+                panic!("Could not add 2 tensors of different. {:?} + {:?}", self, other);
+            }          
+        }
+
+        let mut data = Vec::new();
+        for i in 0..cmp::max(self.data.len(), other.data.len()) {
+            let a = self.data[i % self.data.len()];
+            let b = other.data[i % other.data.len()];
+            data.push(a + b);
+        }
+
+        Tensor {
+            data,
+            shape: self.shape.to_vec(),
+        }
+    }
+}
+
+impl<'b> Add<&'b Tensor> for Tensor {
+    type Output = Tensor;
+
+    fn add(self, other: &'b Tensor) -> Tensor {
+        if self.shape.len() > 1 && other.shape.len() > 1 {
+            if self.shape[1] != other.shape[1] {
+                panic!("Could not add 2 tensors of different. {:?} + {:?}", self, other);
+            }          
+        }
+
+        let mut data = Vec::new();
+        for i in 0..cmp::max(self.data.len(), other.data.len()) {
+            let a = self.data[i % self.data.len()];
+            let b = other.data[i % other.data.len()];
+            data.push(a + b);
+        }
+
+        Tensor {
+            data,
+            shape: self.shape.to_vec(),
+        }
+    }
+}
+
+// Implement addition for tensor
