@@ -663,3 +663,13 @@ impl fmt::Display for Tensor {
                         else {
                             value = value.to_string() + &" ".repeat(decimals - &value.len());
                         }
+                        result += &(value + "  ")
+                    }
+                    result += "|\n";
+                }
+                write!(f, "{}", result)
+            }
+            _ => unimplemented!(),
+        }
+    }
+}
