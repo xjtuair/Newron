@@ -507,3 +507,159 @@ impl<'a> Mul<&'a Tensor> for f64 {
             shape: other.shape.to_vec(),
         }
     }
+}
+
+impl<'a> Mul<&'a mut &Tensor> for f64 {
+    type Output = Tensor;
+
+    fn mul(self, other: &'a mut &Tensor) -> Tensor {
+        Tensor {
+            data: other.data.iter().map(|a| a * self).collect(),
+            shape: other.shape.to_vec(),
+        }
+    }
+}
+
+impl<'a> Mul<f64> for &'a Tensor {
+    type Output = Tensor;
+
+    fn mul(self, other: f64) -> Tensor {
+        Tensor {
+            data: self.data.iter().map(|a| a * other).collect(),
+            shape: self.shape.to_vec(),
+        }
+    }
+}
+
+impl Mul<f32> for Tensor {
+    type Output = Tensor;
+
+    fn mul(self, other: f32) -> Tensor {
+        Tensor {
+            data: self.data.iter().map(|a| a * other as f64).collect(),
+            shape: self.shape.to_vec(),
+        }
+    }
+}
+
+impl Mul<Tensor> for f32 {
+    type Output = Tensor;
+
+    fn mul(self, other: Tensor) -> Tensor {
+        Tensor {
+            data: other.data.iter().map(|a| a * self as f64).collect(),
+            shape: other.shape.to_vec(),
+        }
+    }
+}
+
+impl Mul<Tensor> for Tensor {
+    type Output = Tensor;
+
+    fn mul(self, other: Tensor) -> Tensor {
+        &self * &other
+    }
+}
+
+impl Div<Tensor> for Tensor {
+    type Output = Tensor;
+
+    fn div(self, other: Tensor) -> Tensor {
+        &self / &other
+    }
+}
+
+impl<'a, 'b> Div<&'b Tensor> for &'a Tensor {
+    type Output = Tensor;
+
+    fn div(self, other: &'b Tensor) -> Tensor {
+        // We divide elementwise if the shape are the same
+        if self.shape == other.shape {
+            let data = self
+            .data
+            .iter()
+            .zip(other.data.iter())
+            .map(|(a, b)| a / b)
+            .collect();
+
+            let shape = self.shape.to_vec();
+
+            return Tensor { data, shape };
+        // if self and other have same number of rows and other
+        // is 1 dimension
+        } else if self.shape[0] == other.shape[0] && other.shape[1] == 1 {
+            let mut data = Vec::new();
+
+            for row in 0..self.shape[0] {
+                for col in 0..self.shape[1] {
+                    let val = self.get_value(row, col) / other.data[row];
+                    data.push(val);
+                }
+            }
+
+            let shape = self.shape.to_vec();
+
+            return  Tensor { data, shape };
+        }
+        else {
+            unimplemented!();
+        }
+
+    }
+}
+
+impl Index<usize> for Tensor {
+    type Output = f64;
+
+    fn index(&self, index: usize) -> &f64 {
+        &self.data[index]
+    }
+}
+
+// Implement equality test for tensor (PartialEq : a == b && b == a)
+impl PartialEq for Tensor {
+    fn eq(&self, other: &Self) -> bool {
+        self.shape == other.shape && self.data == other.data
+    }
+}
+
+// Implement Debug
+impl fmt::Debug for Tensor {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}{:?}\n", self, self.shape)
+    }
+}
+
+// Implement Display
+impl fmt::Display for Tensor {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        // 0D: "3.14"
+        // 1D: "[1.0, 2.0, 3.0]"
+        // 2D: "|1.0, 2.0|
+        //      |3.0, 4.0|"
+        // ND: "?"
+
+        match self.shape.len() {
+            0 => write!(f, "{}", self.data[0]),
+            1 => {
+                let mut result = String::new();
+                for el in &self.data {
+                    result += &el.to_string();
+                }
+                write!(f, "[{}]", result)
+            }
+            2 => {
+                // maximum of 8 digits are shown
+                let decimals = 8;
+                let mut result = String::from("\n");
+                for row in 0..self.shape[0] {
+                    result += "|";
+                    for col in 0..self.shape[1] {
+                        let mut value = self.get_value(row, col).to_string();
+                        
+                        if value.len() > decimals {
+                            value = value[0..decimals].to_string();
+                        }
+                        else {
+                            value = value.to_string() + &" ".repeat(decimals - &value.len());
+                        }
