@@ -15,3 +15,7 @@ pub(crate) fn as_u32_le(array: &[u8; 4]) -> u32 {
     ((array[3] as u32) << 24)
 }
 
+// Convert a vec of u8 into a vec of f64
+// Slow implementation (creates a copy)
+// but fast enough for file conversion
+pub(cra
