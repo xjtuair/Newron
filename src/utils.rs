@@ -18,4 +18,7 @@ pub(crate) fn as_u32_le(array: &[u8; 4]) -> u32 {
 // Convert a vec of u8 into a vec of f64
 // Slow implementation (creates a copy)
 // but fast enough for file conversion
-pub(cra
+pub(crate) fn to_vec_f64(data: &Vec<u8>) -> Vec<f64> {
+    let mut result = Vec::new();
+    for el in data {
+        result.push(*el as 
