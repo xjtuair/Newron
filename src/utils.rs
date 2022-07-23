@@ -32,4 +32,9 @@ pub fn round_vector(data: Vec<f64>, decimal_places: usize) -> Vec<f64> {
     data.iter().map(|x| round_f64(*x, decimal_places)).collect()
 }
 
-pub fn round_f64(value: f64, d
+pub fn round_f64(value: f64, decimal_places: usize) -> f64 {
+    let decimal_places = 10.0f64.powf(decimal_places as f64);
+    (value * decimal_places).round() / decimal_places
+}
+
+//
