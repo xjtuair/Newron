@@ -37,4 +37,6 @@ pub fn round_f64(value: f64, decimal_places: usize) -> f64 {
     (value * decimal_places).round() / decimal_places
 }
 
-//
+// Return a list of indices of the maximum value found for each row of the tensor `data`
+// (similar to argmax in numpy)
+pub(crate) fn one_hot_encoded
