@@ -28,4 +28,8 @@ pub(crate) fn to_vec_f64(data: &Vec<u8>) -> Vec<f64> {
 
 // Return a rounded version of the vector `data` to
 // the number of `decimal_places` specified
-pub fn round_vecto
+pub fn round_vector(data: Vec<f64>, decimal_places: usize) -> Vec<f64> {
+    data.iter().map(|x| round_f64(*x, decimal_places)).collect()
+}
+
+pub fn round_f64(value: f64, d
