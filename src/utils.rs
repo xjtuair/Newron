@@ -39,4 +39,8 @@ pub fn round_f64(value: f64, decimal_places: usize) -> f64 {
 
 // Return a list of indices of the maximum value found for each row of the tensor `data`
 // (similar to argmax in numpy)
-pub(crate) fn one_hot_encoded
+pub(crate) fn one_hot_encoded_tensor_to_indices(data: &Tensor) -> Vec<usize> {
+    let rows = data.shape[0];
+    let cols = data.shape[1];
+
+    let mut result = Vec::new
