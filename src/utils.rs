@@ -49,4 +49,9 @@ pub(crate) fn one_hot_encoded_tensor_to_indices(data: &Tensor) -> Vec<usize> {
         let mut maximum = data.get_value(row, 0);
         let mut indice = 0;
         for col in 1..cols {
-            
+            let value = data.get_value(row, col);
+            if value > maximum {
+                maximum = value;
+                indice = col;
+            }
+       
