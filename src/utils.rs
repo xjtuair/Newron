@@ -54,4 +54,12 @@ pub(crate) fn one_hot_encoded_tensor_to_indices(data: &Tensor) -> Vec<usize> {
                 maximum = value;
                 indice = col;
             }
-       
+        }
+        result.push(indice);
+    }
+
+    result
+}
+
+pub (crate) fn fit_string_to_length(string: String, max_length: usize) -> String {
+    if string.len() 
