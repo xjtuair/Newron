@@ -9,4 +9,7 @@ mod categorical_entropy_tests {
     fn test_categorical_entropy_loss() {
         let loss = CategoricalEntropy{};
 
-        // Test 3 d
+        // Test 3 dimensions (batch = 3 samples)
+        let predictions = Tensor::new(vec![0.2, 0.6, 0.2,
+                                                         0.8, 0.2, 0.0,
+      
