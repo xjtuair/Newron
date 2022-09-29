@@ -19,4 +19,5 @@ mod categorical_entropy_tests {
         let true_values = Tensor::new(vec![0.0, 1.0, 0.0,
                                                          1.0, 0.0, 0.0,
                                                          1.0, 0.0, 0.0,
-            
+                                                         0.0, 0.0, 1.0,
+                                                         0.0, 1.0, 0.0], vec!
