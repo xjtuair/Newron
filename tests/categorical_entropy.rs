@@ -20,4 +20,10 @@ mod categorical_entropy_tests {
                                                          1.0, 0.0, 0.0,
                                                          1.0, 0.0, 0.0,
                                                          0.0, 0.0, 1.0,
-                                                         0.0, 1.0, 0.0], vec!
+                                                         0.0, 1.0, 0.0], vec![5, 3]);
+
+        let loss = loss.compute_loss(&true_values, &predictions);
+
+        let result = 0.902;
+
+        assert_eq!(utils::round_f64(loss, 3), r
