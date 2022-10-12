@@ -26,4 +26,12 @@ mod categorical_entropy_tests {
 
         let result = 0.902;
 
-        assert_eq!(utils::round_f64(loss, 3), r
+        assert_eq!(utils::round_f64(loss, 3), result);
+    }
+
+    #[test]
+    fn test_categorical_entropy_loss_grad() {
+        let loss = CategoricalEntropy{};
+
+        // Test 3 dimensions (batch = 3 samples)
+        let
