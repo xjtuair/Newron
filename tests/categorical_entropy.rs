@@ -52,4 +52,8 @@ mod categorical_entropy_tests {
                                                    -0.1, 0.055, 0.045,
                                                    -0.085, 0.042, 0.042,
                                                     0.077, 0.077, -0.153,
-                                                    0.047, -
+                                                    0.047, -0.123, 0.077], vec![5, 3]);
+
+        assert_eq!(utils::round_vector(loss.data, 3), result.data);
+    }
+}
