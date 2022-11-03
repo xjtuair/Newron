@@ -48,4 +48,6 @@ mod categorical_entropy_tests {
 
         let loss = loss.compute_loss_grad(&true_values, &predictions);
 
-        let result = Tensor::new(vec![0.057, -0
+        let result = Tensor::new(vec![0.057, -0.115, 0.057,
+                                                   -0.1, 0.055, 0.045,
+                                                   -0.085, 
