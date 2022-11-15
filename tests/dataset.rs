@@ -17,4 +17,7 @@ mod dataset_tests {
 
         let result = "X_0 | X_1 | X_2 | Y\n\
                       1   | 0   | 1   | 1\n\
-                      0   | 1   | 
+                      0   | 1   | 1   | 1\n\
+                      0   | 0   | 1   | 0\n\
+                      1   | 1   | 1   | 0\n\
+                      Observation(s): 
