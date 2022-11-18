@@ -29,4 +29,8 @@ mod dataset_tests {
 
     #[test]
     fn test_load_csv() {
-        let dataset = Dataset::from_csv(Path::new("datasets/winequality-white.csv"), tr
+        let dataset = Dataset::from_csv(Path::new("datasets/winequality-white.csv"), true).unwrap();
+
+        assert_eq!(dataset.get_number_features(), 11);
+        assert_eq!(dataset.get_number_targets(), 1);
+        assert_eq!(dataset
