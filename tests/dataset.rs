@@ -24,4 +24,9 @@ mod dataset_tests {
                       Feature(s): 3\n\
                       Target(s): 1\n";
 
-        assert_eq!(format!("{:?}"
+        assert_eq!(format!("{:?}", dataset), result);
+    }
+
+    #[test]
+    fn test_load_csv() {
+        let dataset = Dataset::from_csv(Path::new("datasets/winequality-white.csv"), tr
