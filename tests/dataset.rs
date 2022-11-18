@@ -33,4 +33,7 @@ mod dataset_tests {
 
         assert_eq!(dataset.get_number_features(), 11);
         assert_eq!(dataset.get_number_targets(), 1);
-        assert_eq!(dataset
+        assert_eq!(dataset.get_row_count(), 4898);
+
+    }
+}
