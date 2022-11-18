@@ -20,4 +20,8 @@ mod dataset_tests {
                       0   | 1   | 1   | 1\n\
                       0   | 0   | 1   | 0\n\
                       1   | 1   | 1   | 0\n\
-                      Observation(s): 
+                      Observation(s): 4 (4 train + 0 test) \n\
+                      Feature(s): 3\n\
+                      Target(s): 1\n";
+
+        assert_eq!(format!("{:?}"
