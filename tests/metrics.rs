@@ -11,4 +11,8 @@ mod metrics_tests {
                                                    1.0, 0.0], vec![4, 2]);
 
         let true_values: Tensor = Tensor::new(vec![0.4, 0.6, 
-                                                   0.1, 0.9
+                                                   0.1, 0.9, 
+                                                   0.7, 0.3, 
+                                                   1.0, 0.0], vec![4, 2]);
+        (true_values, predictions)
+  
