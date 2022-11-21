@@ -6,4 +6,6 @@ mod metrics_tests {
 
     fn setup() -> (Tensor, Tensor) {
         let predictions: Tensor = Tensor::new(vec![0.4, 0.6, 
-                                            
+                                                   0.1, 0.9, 
+                                                   0.3, 0.7, 
+                                                   1.0, 
