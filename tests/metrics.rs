@@ -15,4 +15,11 @@ mod metrics_tests {
                                                    0.7, 0.3, 
                                                    1.0, 0.0], vec![4, 2]);
         (true_values, predictions)
-  
+    }
+
+    #[test]
+    fn test_cm() {
+        let (y_true, y_pred) = setup();
+
+        let cm = confusion_matrix::ConfusionMatrix::new(y_true.clone(), 
+                         
