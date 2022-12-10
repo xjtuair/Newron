@@ -22,4 +22,12 @@ mod metrics_tests {
         let (y_true, y_pred) = setup();
 
         let cm = confusion_matrix::ConfusionMatrix::new(y_true.clone(), 
-                         
+                                                        y_pred.clone());
+
+        let result = vec![vec![1, 1], vec![0, 2]];
+        assert_eq!(cm.data, result);
+    }
+
+
+    #[test]
+    f
