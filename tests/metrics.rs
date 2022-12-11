@@ -30,4 +30,8 @@ mod metrics_tests {
 
 
     #[test]
-    f
+    fn test_accuracy() {
+        let (y_true, y_pred) = setup();
+
+        let cm = confusion_matrix::ConfusionMatrix::new(y_true.clone(), 
+                            
