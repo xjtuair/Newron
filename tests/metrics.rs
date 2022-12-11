@@ -38,4 +38,11 @@ mod metrics_tests {
 
         let acc_score = cm.accuracy_score();
         let result = 0.75;
-        assert_eq!(utils::round_f64(a
+        assert_eq!(utils::round_f64(acc_score, 2), result);
+    }
+
+    #[test]
+    fn test_recall() {
+        let (y_true, y_pred) = setup();
+
+        let cm = confusion_matrix::ConfusionM
