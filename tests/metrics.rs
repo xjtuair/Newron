@@ -49,4 +49,10 @@ mod metrics_tests {
                                                         y_pred.clone());
 
         let rec_score = cm.recall_score(1);
-        le
+        let result = 0.7;
+        assert_eq!(utils::round_f64(rec_score, 1), result);
+    }
+
+    #[test]
+    fn test_precision() {
+        let (y_true, y_pred) =
