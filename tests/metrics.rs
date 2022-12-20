@@ -45,4 +45,8 @@ mod metrics_tests {
     fn test_recall() {
         let (y_true, y_pred) = setup();
 
-        let cm = confusion_matrix::ConfusionM
+        let cm = confusion_matrix::ConfusionMatrix::new(y_true.clone(), 
+                                                        y_pred.clone());
+
+        let rec_score = cm.recall_score(1);
+        le
