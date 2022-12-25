@@ -55,4 +55,7 @@ mod metrics_tests {
 
     #[test]
     fn test_precision() {
-        let (y_true, y_pred) =
+        let (y_true, y_pred) = setup();
+
+        let cm = confusion_matrix::ConfusionMatrix::new(y_true.clone(), 
+                                                        y_pred.clone(
