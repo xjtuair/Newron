@@ -58,4 +58,9 @@ mod metrics_tests {
         let (y_true, y_pred) = setup();
 
         let cm = confusion_matrix::ConfusionMatrix::new(y_true.clone(), 
-                                                        y_pred.clone(
+                                                        y_pred.clone());
+
+        let pre_score = cm.precision_score(1);
+        let result = 1.0;
+        assert_eq!(utils::round_f64(pre_score, 1), result);
+  
