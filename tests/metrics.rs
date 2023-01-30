@@ -69,4 +69,9 @@ mod metrics_tests {
     fn test_f1() {
         let (y_true, y_pred) = setup();
 
-        let cm = confusion_matrix::ConfusionMatrix::new(
+        let cm = confusion_matrix::ConfusionMatrix::new(y_true.clone(), 
+                                                        y_pred.clone());
+
+        let f1_score = cm.f1_score(1);
+        let result = 0.8;
+      
