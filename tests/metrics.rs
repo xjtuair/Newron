@@ -74,4 +74,6 @@ mod metrics_tests {
 
         let f1_score = cm.f1_score(1);
         let result = 0.8;
-      
+        assert_eq!(utils::round_f64(f1_score, 1), result);
+    }
+}
